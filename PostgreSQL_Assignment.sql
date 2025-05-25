@@ -51,9 +51,14 @@ INSERT INTO rangers(name, region)
 VALUES ('Derek Fox', 'Coastal Plains')
 
 
+
+
 -- (Problem 2) 2️⃣ Count unique species ever sighted.
 SELECT count(*) as unique_species_count FROM sightings
 GROUP BY species_id
+
+
+
 
 
 -- (Problem 3)
@@ -63,7 +68,6 @@ WHERE location ILIKE '%Pass';
 
 -- (Problem 4) 4️⃣ List each ranger's name and their total number of sightings.
 SELECT * FROM sightings
-count(*) 
 
 
 
@@ -73,10 +77,26 @@ count(*)
 -- (Problem 5)
 
 
--- (Problem 6)
 
 
--- (Problem 7)
+-- (Problem 6) 6️⃣ Show the most recent 2 sightings. common_name, sighting_time
+SELECT  common_name, sighting_time, name FROM sightings
+JOIN species USING(species_id)
+JOIN rangers USING(ranger_id)
+WHERE (sighting_time < now()) 
+ORDER BY sighting_time DESC LIMIT 2 
 
 
--- (Problem 8)
+
+
+
+-- (Problem 7) 7️⃣ Update all species discovered before year 1800 to have status 'Historic'.
+
+
+
+
+-- (Problem 8) 8️⃣ Label each sighting's time of day as 'Morning', 'Afternoon', or 'Evening'.
+
+
+
+-- (Problem 9) 9️⃣ Delete rangers who have never sighted any species
