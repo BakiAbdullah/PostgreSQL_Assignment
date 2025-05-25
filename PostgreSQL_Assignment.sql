@@ -41,11 +41,6 @@ INSERT INTO sightings(species_id, ranger_id, location, sighting_time, notes) VAL
 (1, 2, 'Snowfall Pass', '2024-05-18 18:30:00', NULL);
 
 
-SELECT * FROM rangers;
-SELECT * FROM species;
-SELECT * FROM sightings;
-
-
 -- (Problem 1)
 INSERT INTO rangers(name, region)
 VALUES ('Derek Fox', 'Coastal Plains')
@@ -82,17 +77,23 @@ WHERE sighting_time < now()
 ORDER BY sighting_time DESC LIMIT 2 ;
 
 
--- (Problem 7) 7️⃣ Update all species discovered before year 1800 to have status 'Historic'.
-
-
-
+-- (Problem 7)
+UPDATE species
+SET conservation_status = 'Historic'
+WHERE 
+extract (year FROM discovery_date) < 1800;
 
 
 -- (Problem 8) 8️⃣ Label each sighting's time of day as 'Morning', 'Afternoon', or 'Evening'.
+SELECT * FROM sightings
 
 
 -- (Problem 9)
 DELETE FROM rangers
 WHERE ranger_id 
 NOT IN (SELECT ranger_id FROM sightings);
+
+SELECT * FROM rangers;
+SELECT * FROM species;
+SELECT * FROM sightings;
 
