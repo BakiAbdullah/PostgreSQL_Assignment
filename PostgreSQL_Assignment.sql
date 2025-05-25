@@ -51,14 +51,8 @@ INSERT INTO rangers(name, region)
 VALUES ('Derek Fox', 'Coastal Plains')
 
 
-
-
--- (Problem 2) 2️⃣ Count unique species ever sighted.
-SELECT count(*) as unique_species_count FROM sightings
-GROUP BY species_id
-
-
-
+-- (Problem 2)
+SELECT count(DISTINCT species_id) as unique_species_count FROM sightings;
 
 
 -- (Problem 3)
@@ -79,11 +73,12 @@ SELECT * FROM sightings
 
 
 
--- (Problem 6) 6️⃣ Show the most recent 2 sightings. common_name, sighting_time
-SELECT  common_name, sighting_time, name FROM sightings
+-- (Problem 6)
+SELECT  common_name, sighting_time, name 
+FROM sightings
 JOIN species USING(species_id)
 JOIN rangers USING(ranger_id)
-WHERE (sighting_time < now()) 
+WHERE sighting_time < now()
 ORDER BY sighting_time DESC LIMIT 2 
 
 
