@@ -60,38 +60,31 @@ SELECT * FROM sightings
 WHERE location ILIKE '%Pass';
 
 
--- (Problem 4) 4️⃣ List each ranger's name and their total number of sightings.
-SELECT * FROM sightings
+-- (Problem 4)
+SELECT count(ranger_id) as total_sightings, name FROM sightings
+JOIN rangers USING(ranger_id)
+GROUP BY name
 
 
 
 
 
 
--- (Problem 5)
 
-
-
-
+-- (Problem 5) 5️⃣ List species that have never been sighted.
 -- (Problem 6)
 SELECT  common_name, sighting_time, name 
 FROM sightings
 JOIN species USING(species_id)
 JOIN rangers USING(ranger_id)
 WHERE sighting_time < now()
-ORDER BY sighting_time DESC LIMIT 2 
-
+ORDER BY sighting_time DESC LIMIT 2 ;
 
 
 
 
 -- (Problem 7) 7️⃣ Update all species discovered before year 1800 to have status 'Historic'.
-
-
-
-
 -- (Problem 8) 8️⃣ Label each sighting's time of day as 'Morning', 'Afternoon', or 'Evening'.
-
-
-
 -- (Problem 9) 9️⃣ Delete rangers who have never sighted any species
+
+DELETE FROM rangers  
