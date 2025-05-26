@@ -84,8 +84,14 @@ WHERE
 extract (year FROM discovery_date) < 1800;
 
 
--- (Problem 8) 8️⃣ Label each sighting's time of day as 'Morning', 'Afternoon', or 'Evening'.
-SELECT * FROM sightings
+-- (Problem 8) 
+SELECT sighting_id,
+CASE 
+  WHEN EXTRACT(HOUR FROM sighting_time) BETWEEN 5 AND 11 THEN 'Morning'
+  WHEN EXTRACT(HOUR FROM sighting_time) BETWEEN 12 AND 16 THEN 'Afternoon'
+  WHEN EXTRACT(HOUR FROM sighting_time) BETWEEN 17 AND 20 THEN 'Evening'
+END AS time_of_day
+FROM sightings;
 
 
 -- (Problem 9)
@@ -93,7 +99,4 @@ DELETE FROM rangers
 WHERE ranger_id 
 NOT IN (SELECT ranger_id FROM sightings);
 
-SELECT * FROM rangers;
-SELECT * FROM species;
-SELECT * FROM sightings;
 
