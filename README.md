@@ -108,9 +108,74 @@ ORDER BY sighting_time;
 
 উত্তর:
 
-## Q5 : Explain the purpose of the WHERE clause in a SELECT statement.
+## Q5 : Explain the purpose of the `WHERE` clause in a SELECT statement.
 
-উত্তর:
+উত্তর:  `WHERE` Clause in SQL
+
+`WHERE` clause SQL query তে এমন একটি powerful filter যা আমাদের specific data query
+করতে সাহায্য করে, অর্থাৎ আমরা যেটুকু ডেটা চাই, সেটুকুই বের করে আনতে পারি। এটি বড় বড় টেবিলের মধ্যে থেকেও targeted rows efficiently খুঁজে আনতে পারে।
+
+#### মূল ব্যবহার সমূহ (Use Cases): 
+🔹 Conditional Row Retrieval:
+`WHERE` clause এমন condition গুলো define করে, যেগুলো fulfill করা rows ই query result এ দেখানো হয়।
+
+```sql
+SELECT * FROM Employees WHERE Salary > 50000;
+```
+এখানে শুধু যাদের salary ৫০,০০০ এর বেশি, তারাই রিটার্ন হবে।
+
+🔹 Multiple Conditions Use:
+Logical operators দিয়ে আমরা একাধিক শর্ত যোগ করতে পারেন:
+
+```sql
+SELECT * FROM Students WHERE Grade = 'A' AND Age < 18;
+```
+এটি Grade 'A' এবং বয়স ১৮ বছরের নিচে এমন students রিটার্ন করবে।
+
+🔹 Pattern Matching:
+LIKE operator দিয়ে আমরা pattern match করতে পারেন —
+
+```sql
+SELECT * FROM Products WHERE Name LIKE 'S%';
+```
+এটি এমন সব পণ্যের নাম দেখাবে যেগুলো 'S' দিয়ে শুরু।
+
+🔹 NULL Value Handling:
+WHERE clause এ IS NULL বা IS NOT NULL দিয়ে null values ও handle করা যায়।
+
+```sql
+SELECT * FROM Orders WHERE DeliveryDate IS NULL;
+```
+
+⚡Optimization Tips:
+
+Indexed Columns এ `WHERE` ব্যবহার করলে performance boost পায়।
+যেমন: `WHERE` CustomerID = 5 যদি CustomerID indexed হয়,
+ তাহলে query অনেক faster হবে।
+
+🔸 Avoid functions on columns inside `WHERE`:
+যেমন —
+
+```sql
+WHERE YEAR(OrderDate) = 2024
+```
+এর বদলে যদি সম্ভব হয়:
+
+```sql
+WHERE OrderDate BETWEEN '2024-01-01' AND '2024-12-31'
+```
+এটি অনেক efficient কাজ করবে।
+
+#### উপসংহার:
+`WHERE` clause `SQL` এর heart এর মতো, এটি ছাড়া সঠিক, relevant এবং efficient query
+লেখা প্রায় অসম্ভব। এটি আমাদেরকে বিশাল ডেটাবেইস থেকেও শুধু প্রাসঙ্গিক তথ্য খুঁজে বের করতে দেয়
+এবং smart ভাবে query performance maintain করে।
+
+
+
+
+
+
 
 <!-- ## Q6 : Explain the GROUP BY clause and its role in aggregation operations.
 
