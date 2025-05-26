@@ -106,7 +106,45 @@ ORDER BY sighting_time;
 
 ## Q4 : Explain the Primary Key and Foreign Key concepts in PostgreSQL.
 
-উত্তর:
+উত্তর: 
+### Primary Key in PostgreSQL
+`Primary Key` হল এমন একটি column (বা column group) যা প্রতিটি row কে uniquely identify করে। এটি table এর জন্য একটা unique identifier হিসেবে কাজ করে। `Primary Key` এর value unique হয় প্রতিটি row এর জন্য, এটি `NULL` হতে পরবে না। একটি table এ শুধুমাত্র একটি Primary Key থাকতে পারবে।
+
+#### Example:
+``` sql
+CREATE TABLE Students (
+    student_id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    age INT
+);
+```
+এখানে student_id প্রতিটি student কে uniquely identify করে, তাই এটা `Primary Key`।
+
+### `Foreign Key` in PostgreSQL
+`Foreign Key` এমন একটি column (বা column group) যা অন্য একটি টেবিলের 
+`Primary Key` এর সাথে সম্পর্ক (relationship) স্থাপন করে। এটি ডেটার referential integrity নিশ্চিত করে।
+
+`Foreign Key` এর Key Points গুলো হলো:
+
+- এটি এক টেবিলের মধ্যে অন্য টেবিলের ডেটা refer করে।
+- `Foreign Key` যে টেবিলকে reference করে, সেখানে সেই value থাকতে অবশ্যই হবে।
+- এটি দুই টেবিলের মধ্যে relationship তৈরি করে (যেমন one-to-many, many-to-one)।
+
+#### Example:
+``` sql
+
+CREATE TABLE Orders (
+    order_id SERIAL PRIMARY KEY,
+    order_date DATE,
+    student_id INT REFERENCES Students(student_id)
+);
+```
+
+#### Practical Use:
+- একাধিক টেবিলের মধ্যে ডেটা consistency রাখতে হলে Primary–Foreign key relationship জরুরি।
+-  Query করা সহজ হয়, যেমন JOIN query লিখতে সুবিধা হয়।
+-  Cascading actions (ON DELETE CASCADE) ব্যবহার করে ডেটা integrity বজায় রাখা যায়।
+
 
 ## Q5 : Explain the purpose of the `WHERE` clause in a SELECT statement.
 
