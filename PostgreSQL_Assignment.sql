@@ -43,7 +43,7 @@ INSERT INTO sightings(species_id, ranger_id, location, sighting_time, notes) VAL
 
 -- (Problem 1)
 INSERT INTO rangers(name, region)
-VALUES ('Derek Fox', 'Coastal Plains')
+VALUES ('Derek Fox', 'Coastal Plains');
 
 
 -- (Problem 2)
@@ -65,7 +65,7 @@ GROUP BY name ORDER BY name ASC;
 -- (Problem 5)
 SELECT common_name FROM species
 WHERE species_id
-NOT IN (SELECT species_id FROM sightings)
+NOT IN (SELECT species_id FROM sightings);
 
 
 -- (Problem 6)
@@ -74,7 +74,7 @@ FROM sightings
 JOIN species USING(species_id)
 JOIN rangers USING(ranger_id)
 WHERE sighting_time < now()
-ORDER BY sighting_time DESC LIMIT 2 ;
+ORDER BY sighting_time DESC LIMIT 2;
 
 
 -- (Problem 7)
