@@ -107,7 +107,7 @@ ORDER BY sighting_time;
 ## Q4 : Explain the Primary Key and Foreign Key concepts in PostgreSQL.
 
 উত্তর: 
-### Primary Key in PostgreSQL
+### `Primary Key` in PostgreSQL
 `Primary Key` হল এমন একটি column (বা column group) যা প্রতিটি row কে uniquely identify করে। এটি table এর জন্য একটা unique identifier হিসেবে কাজ করে। `Primary Key` এর value unique হয় প্রতিটি row এর জন্য, এটি `NULL` হতে পরবে না। একটি table এ শুধুমাত্র একটি Primary Key থাকতে পারবে।
 
 #### Example:
